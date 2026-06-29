@@ -7,7 +7,6 @@ import { initMap }         from './map.js';
 import { initHighlights }  from './highlights.js';
 import { initFindspot }    from './findspot.js';
 import { initCorrelation } from './correlation.js';
-
 // ── Init all charts ──
 initForce();
 initMap();

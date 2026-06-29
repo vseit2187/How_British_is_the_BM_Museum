@@ -103,9 +103,9 @@ export async function initForce() {
 
   // SVG
   const svg = d3.select('#force-svg')
-    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('viewBox', `0 159 ${W} ${H - 318}`)
     .attr('width', '100%');
-  wrap.style.height = H + 'px';
+  wrap.style.height = (H - 318) + 'px';
 
   const g = svg.append('g');
 

@@ -15,7 +15,6 @@
     <li><a href="#hero">Intro</a></li>
     <li><a href="#overview">Collection</a></li>
     <li><a href="#world">Geography</a></li>
-    <li><a href="#uk">UK share</a></li>
     <li><a href="#highlights">Highlights</a></li>
     <li><a href="#contested">Contested</a></li>
     <li><a href="#findspot">Findspot</a></li>
@@ -25,13 +24,83 @@
 </nav>
 
 <!-- ─── HERO ─── -->
+<!-- ─── INTRO ANIMATION OVERLAY ─── -->
+<div id="intro-overlay">
+  <svg id="intro-svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="col-glow">
+        <feGaussianBlur stdDeviation="6" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <!-- steps -->
+    <rect x="30"  y="290" width="340" height="10" fill="rgba(26,22,20,0.07)"/>
+    <rect x="50"  y="280" width="300" height="10" fill="rgba(26,22,20,0.07)"/>
+    <rect x="70"  y="270" width="260" height="10" fill="rgba(26,22,20,0.07)"/>
+    <!-- entablature -->
+    <rect x="60"  y="120" width="280" height="18" fill="rgba(26,22,20,0.1)"/>
+    <rect x="55"  y="138" width="290" height="10" fill="rgba(26,22,20,0.07)"/>
+    <!-- pediment -->
+    <polygon points="200,32 60,120 340,120" fill="rgba(26,22,20,0.04)" stroke="rgba(26,22,20,0.18)" stroke-width="1.5"/>
+    <g stroke="rgba(26,22,20,0.05)" stroke-width="1">
+      <line x1="140" y1="118" x2="165" y2="68"/>
+      <line x1="160" y1="118" x2="180" y2="52"/>
+      <line x1="180" y1="118" x2="196" y2="40"/>
+      <line x1="200" y1="118" x2="200" y2="38"/>
+      <line x1="220" y1="118" x2="204" y2="40"/>
+      <line x1="240" y1="118" x2="220" y2="52"/>
+      <line x1="260" y1="118" x2="235" y2="68"/>
+    </g>
+    <!-- col 1 — fades first -->
+    <g id="gcol-1" style="transition:opacity 0.6s ease">
+      <rect x="78"  y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+      <rect x="73"  y="145" width="38" height="6"   fill="#8B8278"/>
+      <rect x="73"  y="268" width="38" height="6"   fill="#8B8278"/>
+    </g>
+    <!-- col 2 -->
+    <g id="gcol-2" style="transition:opacity 0.6s ease">
+      <rect x="134" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+      <rect x="129" y="145" width="38" height="6"   fill="#8B8278"/>
+      <rect x="129" y="268" width="38" height="6"   fill="#8B8278"/>
+    </g>
+    <!-- col 3 -->
+    <g id="gcol-3" style="transition:opacity 0.6s ease">
+      <rect x="186" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+      <rect x="181" y="145" width="38" height="6"   fill="#8B8278"/>
+      <rect x="181" y="268" width="38" height="6"   fill="#8B8278"/>
+    </g>
+    <!-- col 4 -->
+    <g id="gcol-4" style="transition:opacity 0.6s ease">
+      <rect x="238" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+      <rect x="233" y="145" width="38" height="6"   fill="#8B8278"/>
+      <rect x="233" y="268" width="38" height="6"   fill="#8B8278"/>
+    </g>
+    <!-- col 5 — stays dark -->
+    <rect x="290" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+    <rect x="285" y="145" width="38" height="6"   fill="#8B8278"/>
+    <rect x="285" y="268" width="38" height="6"   fill="#8B8278"/>
+    <!-- fluting -->
+    <g stroke="rgba(26,22,20,0.15)" stroke-width="0.5">
+      <line x1="84"  y1="150" x2="84"  y2="268"/><line x1="90"  y1="150" x2="90"  y2="268"/><line x1="96"  y1="150" x2="96"  y2="268"/>
+      <line x1="140" y1="150" x2="140" y2="268"/><line x1="146" y1="150" x2="146" y2="268"/><line x1="152" y1="150" x2="152" y2="268"/>
+      <line x1="192" y1="150" x2="192" y2="268"/><line x1="198" y1="150" x2="198" y2="268"/><line x1="204" y1="150" x2="204" y2="268"/>
+      <line x1="244" y1="150" x2="244" y2="268"/><line x1="250" y1="150" x2="250" y2="268"/><line x1="256" y1="150" x2="256" y2="268"/>
+      <line x1="296" y1="150" x2="296" y2="268"/><line x1="302" y1="150" x2="302" y2="268"/><line x1="308" y1="150" x2="308" y2="268"/>
+    </g>
+    <!-- ground line -->
+    <line x1="20" y1="300" x2="380" y2="300" stroke="rgba(26,22,20,0.12)" stroke-width="1"/>
+  </svg>
+</div>
+
 <section id="hero" class="section" style="padding-top:100px; min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:clamp(32px,5vw,80px);">
 
-  <div>
+  <div id="hero-content">
     <span class="eyebrow">A data investigation · British Museum · 45,185 objects on display</span>
     <h1>Only <em>1 in 5</em><br>exhibits is British</h1>
     <div class="hero-rule"></div>
-    <p class="lead">We read the origin of every single object currently on display at the British Museum — all 45,185 of them. Here is what the data says about whose heritage fills these galleries.</p>
+    <p class="lead">The British Museum is famous for its vast, multicultural collection — and for hosting some of the world's most contested objects. But anyone who visits will notice something curious: hardly anything on display seems to be of British origin.
+With the UK government recently proposing charges for international visitors at national museums, the question feels more urgent than ever.
+<strong>How British is the British Museum?</strong> Here's what the data says.</p>
     <div class="hero-stats">
       <div>
         <div class="stat-num">45,185</div>
@@ -43,20 +112,19 @@
       </div>
       <div>
         <div class="stat-num">80.9%</div>
-        <div class="stat-lbl">Non-British (known origin)</div>
+        <div class="stat-lbl">Non-British (known origin)*</div>
       </div>
     </div>
+
+    <p style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:0.1em; color:var(--stone); margin-top:16px; font-style:normal;">
+      * "British" = recorded production place is UK or constituent nation &nbsp;·&nbsp;
+      46% of objects have no production place recorded — see Section 06
+    </p>
   </div>
 
   <!-- BM Building illustration -->
   <div class="hero-building">
     <svg id="bm-svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;">
-      <defs>
-        <filter id="soft-glow">
-          <feGaussianBlur stdDeviation="4" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
       <!-- steps -->
       <rect x="30"  y="290" width="340" height="10" fill="rgba(26,22,20,0.07)"/>
       <rect x="50"  y="280" width="300" height="10" fill="rgba(26,22,20,0.07)"/>
@@ -65,9 +133,7 @@
       <rect x="60"  y="120" width="280" height="18" fill="rgba(26,22,20,0.1)"/>
       <rect x="55"  y="138" width="290" height="10" fill="rgba(26,22,20,0.07)"/>
       <!-- pediment -->
-      <polygon points="200,32 60,120 340,120"
-        fill="rgba(26,22,20,0.04)" stroke="rgba(26,22,20,0.18)" stroke-width="1.5"/>
-      <!-- pediment texture -->
+      <polygon points="200,32 60,120 340,120" fill="rgba(26,22,20,0.04)" stroke="rgba(26,22,20,0.18)" stroke-width="1.5"/>
       <g stroke="rgba(26,22,20,0.05)" stroke-width="1">
         <line x1="140" y1="118" x2="165" y2="68"/>
         <line x1="160" y1="118" x2="180" y2="52"/>
@@ -77,34 +143,39 @@
         <line x1="240" y1="118" x2="220" y2="52"/>
         <line x1="260" y1="118" x2="235" y2="68"/>
       </g>
-      <!-- col 1 (solid stone) -->
-      <rect x="78"  y="148" width="28" height="122" fill="#C8C0B0" rx="1"/>
-      <rect x="73"  y="145" width="38" height="6"   fill="#C0B8A8"/>
-      <rect x="73"  y="268" width="38" height="6"   fill="#C0B8A8"/>
-      <!-- col 2 (solid stone) -->
-      <rect x="134" y="148" width="28" height="122" fill="#C8C0B0" rx="1"/>
-      <rect x="129" y="145" width="38" height="6"   fill="#C0B8A8"/>
-      <rect x="129" y="268" width="38" height="6"   fill="#C0B8A8"/>
-      <!-- col 3 — BRITISH (cream, distinct but no glow) -->
-      <rect x="186" y="148" width="28" height="122" fill="#E6E0D4" rx="1"/>
-      <rect x="181" y="145" width="38" height="6"   fill="#DFD8CC"/>
-      <rect x="181" y="268" width="38" height="6"   fill="#DFD8CC"/>
-      <!-- col 4 (solid stone) -->
-      <rect x="238" y="148" width="28" height="122" fill="#C8C0B0" rx="1"/>
-      <rect x="233" y="145" width="38" height="6"   fill="#C0B8A8"/>
-      <rect x="233" y="268" width="38" height="6"   fill="#C0B8A8"/>
-      <!-- col 5 (solid stone) -->
-      <rect x="290" y="148" width="28" height="122" fill="#C8C0B0" rx="1"/>
-      <rect x="285" y="145" width="38" height="6"   fill="#C0B8A8"/>
-      <rect x="285" y="268" width="38" height="6"   fill="#C0B8A8"/>
-      <!-- fluting on stone cols -->
-      <g stroke="rgba(26,22,20,0.15)" stroke-width="0.5">
+      <!-- cols 1-4 — faded (matches intro final frame: group opacity 0.08) -->
+      <g opacity="0.08">
+        <rect x="78"  y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+        <rect x="73"  y="145" width="38" height="6"   fill="#8B8278"/>
+        <rect x="73"  y="268" width="38" height="6"   fill="#8B8278"/>
+      </g>
+      <g opacity="0.08">
+        <rect x="134" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+        <rect x="129" y="145" width="38" height="6"   fill="#8B8278"/>
+        <rect x="129" y="268" width="38" height="6"   fill="#8B8278"/>
+      </g>
+      <g opacity="0.08">
+        <rect x="186" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+        <rect x="181" y="145" width="38" height="6"   fill="#8B8278"/>
+        <rect x="181" y="268" width="38" height="6"   fill="#8B8278"/>
+      </g>
+      <g opacity="0.08">
+        <rect x="238" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+        <rect x="233" y="145" width="38" height="6"   fill="#8B8278"/>
+        <rect x="233" y="268" width="38" height="6"   fill="#8B8278"/>
+      </g>
+      <!-- col 5 — stays dark -->
+      <rect x="290" y="148" width="28" height="122" fill="#8B8278" rx="1"/>
+      <rect x="285" y="145" width="38" height="6"   fill="#8B8278"/>
+      <rect x="285" y="268" width="38" height="6"   fill="#8B8278"/>
+      <!-- fluting -->
+      <g stroke="rgba(255,255,255,0.2)" stroke-width="0.5">
         <line x1="84"  y1="150" x2="84"  y2="268"/><line x1="90"  y1="150" x2="90"  y2="268"/><line x1="96"  y1="150" x2="96"  y2="268"/>
         <line x1="140" y1="150" x2="140" y2="268"/><line x1="146" y1="150" x2="146" y2="268"/><line x1="152" y1="150" x2="152" y2="268"/>
+        <line x1="192" y1="150" x2="192" y2="268"/><line x1="198" y1="150" x2="198" y2="268"/><line x1="204" y1="150" x2="204" y2="268"/>
         <line x1="244" y1="150" x2="244" y2="268"/><line x1="250" y1="150" x2="250" y2="268"/><line x1="256" y1="150" x2="256" y2="268"/>
         <line x1="296" y1="150" x2="296" y2="268"/><line x1="302" y1="150" x2="302" y2="268"/><line x1="308" y1="150" x2="308" y2="268"/>
       </g>
-      <!-- ground line -->
       <line x1="20" y1="300" x2="380" y2="300" stroke="rgba(26,22,20,0.12)" stroke-width="1"/>
     </svg>
     <p class="building-caption"><span>1 in 5</span> objects on display is British</p>
@@ -143,7 +214,7 @@
   <div class="inner">
     <span class="eyebrow reveal">02 — Geography of the collection</span>
     <h2 class="reveal">The world's objects,<br>in <em>one building</em></h2>
-    <p class="lead reveal">Among the 26,239 objects with a known production place. Italy, Greece, and China dwarf everyone else — including Britain.</p>
+    <p class="lead reveal">Among the 26,239 objects with a known production place.</p>
 
     <div id="map-container" class="reveal" style="position:relative;">
       <svg id="map-svg" width="100%"></svg>
@@ -157,64 +228,27 @@
   </div>
 </section>
 
-<!-- ─── SECTION 03: UK NATIONS ─── -->
-<section id="uk" class="section">
-  <div class="inner">
-    <span class="eyebrow reveal">03 — Inside the British share</span>
-    <h2 class="reveal"><em>England</em> accounts for<br>nearly all of the UK's share</h2>
-    <p class="lead reveal">The 19.1% British figure is not spread evenly across the four nations. Scotland, Wales, and Northern Ireland barely register.</p>
-
-    <div class="reveal">
-      <span class="big-pct">91.7%</span>
-      <p style="font-size:16px; color:var(--stone); font-style:italic; max-width:44ch;">of the UK's on-display objects were made in England — not Britain broadly.</p>
-    </div>
-
-    <div class="nation-grid reveal">
-      <div class="nation-card">
-        <div class="nc-name">England</div>
-        <div class="nc-num" style="color:var(--ink);">4,600</div>
-        <div class="nc-pct">91.7% of UK total</div>
-      </div>
-      <div class="nation-card">
-        <div class="nc-name">Ambiguous UK</div>
-        <div class="nc-num" style="color:var(--stone);">384</div>
-        <div class="nc-pct">7.7% — tagged "British Isles"</div>
-      </div>
-      <div class="nation-card">
-        <div class="nc-name">Scotland</div>
-        <div class="nc-num" style="color:var(--stone);">16</div>
-        <div class="nc-pct">0.3% of UK total</div>
-      </div>
-      <div class="nation-card">
-        <div class="nc-name">Wales + N. Ireland</div>
-        <div class="nc-num" style="color:var(--stone);">14</div>
-        <div class="nc-pct">0.3% of UK total</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ─── SECTION 04: HIGHLIGHTS ─── -->
 <section id="highlights" class="section">
   <div class="inner">
-    <span class="eyebrow reveal">04 — The museum's own highlights</span>
-    <h2 class="reveal">Of the 12 objects the museum<br>calls unmissable — <em>0 are British</em></h2>
-    <p class="lead reveal">The British Museum's own curators chose which objects visitors should not miss. Every single one comes from outside the UK. The data is from the museum's own blog.</p>
+    <span class="eyebrow reveal">03 — The museum's own highlights</span>
+    <h2 class="reveal">But what about the 12 objects the Museum<br>calls unmissable?</h2>
+    <p class="lead reveal">For those visiting in a hurry, the Museum has curated a list of 12 must-see highlights. The punchline? Every single one comes from outside the UK. The data is from the museum's own blog.</p>
 
     <div class="highlights-intro reveal">
-      <div>
+      <div style="display:flex; align-items:center; gap:16px;">
         <div class="highlights-zero">0/12</div>
         <div class="highlights-zero-label">highlights are<br>British in origin</div>
       </div>
       <div class="callout" style="margin:0; max-width:44ch;">
-        <p>"Not one of the museum's own 'must-see' objects was made in Britain. The collection's most celebrated pieces come from Egypt, Greece, Nigeria, Mexico, Easter Island."</p>
-        <small>Provisional text — editorial copy to be written by [colleague name]</small>
+        <p>Not one of them was made in Britain. The collection's most celebrated pieces come from Egypt, Greece, Nigeria, Mexico, Easter Island.</p>
       </div>
     </div>
 
     <div class="highlights-grid reveal" id="highlights-grid"></div>
     <p class="chart-note reveal" style="margin-top:16px;">
-      Source: britishmuseum.org/blog/12-things-not-miss-british-museum ·
+      Source: <a href="https://www.britishmuseum.org/blog/12-things-not-miss-british-museum" target="_blank" rel="noopener">British Museum</a> ·
       <span style="color:var(--terra);">■</span> Contested = formal repatriation requests made
     </p>
   </div>
@@ -222,63 +256,91 @@
 
 <!-- ─── SECTION 05a: PARTHENON ─── -->
 <section id="contested" class="contested-section">
-  <span class="provisional" style="display:block; margin-bottom:32px; max-width:var(--max); margin-left:auto; margin-right:auto; padding:0 var(--pad);">
-    ⚠ Provisional — editorial text to be written
-  </span>
 
   <div class="contested-object">
     <div class="contested-img-wrap">
-      <img src="https://www.britishmuseum.org/sites/default/files/styles/uncropped_large/public/2022-07/Parthenon-east-pediment-1000x782.jpg"
+      <img src="./assets/images/Parthenon_Marbles_east_pediment_highres.jpg"
            alt="Parthenon Sculptures" loading="lazy">
-      <div class="contested-tag">Contested</div>
     </div>
 
     <div class="contested-text">
-      <span class="eyebrow">05a — Contested highlight</span>
+      <span class="eyebrow">05a — Highlight In-Focus</span>
       <h2>The Parthenon<br><em>Sculptures</em></h2>
 
       <div class="fact-row"><span class="fact-key">Origin</span><span class="fact-val">Athens, Greece — 438–432 BC</span></div>
       <div class="fact-row"><span class="fact-key">Location</span><span class="fact-val">Room 18, British Museum</span></div>
-      <div class="fact-row"><span class="fact-key">How acquired</span><span class="fact-val">Removed by Lord Elgin, 1801–1812</span></div>
+      <div class="fact-row"><span class="fact-key">Manner of Acquisition</span><span class="fact-val">Removed by Lord Elgin, 1801–1812</span></div>
       <div class="fact-row"><span class="fact-key">Status</span><span class="fact-val">Greece has formally requested return since 1983</span></div>
 
       <div class="quote-block">
-        <p>"[Provisional] A quote from the Greek government, a Rapa Nui representative, or a relevant cultural authority will appear here. This is placeholder text."</p>
-        <cite>— Source to be confirmed by [colleague name]</cite>
+        <p>"It’s not a question of ownership, it’s a question of reunification... If you cut the Mona Lisa in half, and you have one half in the Louvre and one half in the British Museum, do you think the viewers will be able to appreciate its beauty?"</p>
+        <cite>— Kyriakos Mitsotakis, Prime Minister of Greece. Source: <a href="https://www.reuters.com/world/europe/greek-pm-repeats-call-return-parthenon-sculptures-athens-2024-01-25/" target="_blank" rel="noopener">Reuters</a></cite>
       </div>
 
       <p style="font-size:14px; color:var(--stone); font-style:italic; line-height:1.65;">
-        [Provisional] The broader context of the Parthenon Sculptures debate — the legal arguments, the museum's position, and what reunification would mean — will be written here. Approximately 150–200 words.
+        One of the Museum’s most prominent highlights, the Parthenon Sculptures, is also one of the most famously contested objects from the collection. The centuries-old issue spans not only the questionable manner of acquisition, but also the multiple rejected formal requests of repatriation.
+
       </p>
     </div>
+  </div>
+
+  <!-- Timeline subsection -->
+  <div class="timeline-subsection" style="max-width:var(--max); margin:0 auto; padding:clamp(40px,6vw,72px) var(--pad);">
+    <h3 class="timeline-title">Timeline of Formal Repatriation Requests</h3>
+    <p class="timeline-intro">Greece, ever since gaining independence from the Ottoman Empire in 1830, has made multiple requests for the repatriation of the Parthenon Sculptures:</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1842</div>
+        <div class="timeline-event">Request by the Secretary of the Archaeological Society at Athens</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1924</div>
+        <div class="timeline-event">Request repeated in light of Lord Byron's death anniversary</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1961</div>
+        <div class="timeline-event">Request by the Mayor of Athens &amp; the Academy of Athens</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1982</div>
+        <div class="timeline-event">Request presented during UNESCO's General Conference</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1984</div>
+        <div class="timeline-event">Request by the Greek Government — rejected by the UK</div>
+      </div>
+    </div>
+
+    <p class="timeline-body">Since 1987, the issue has been included in UNESCO's official agenda, to be discussed every 2 years. Additionally, 25 foreign national committees for the return of the Parthenon Sculptures are presently active. Many petitions and resolutions have also voted for the sculptures' repatriation.</p>
+    <p class="timeline-body">Still, the British Museum has not responded in any substantial manner, attempting instead to appease critics through seemingly altruistic statements regarding its mission of embodying a 'world-museum' that provides access to 'shared human history' with 'the widest possible public', with the Trustees even discouraging UNESCO involvement.</p>
   </div>
 </section>
 
 <!-- ─── SECTION 05b: HOA HAKANANAI'A ─── -->
-<section class="contested-section" style="border-top: 1px solid var(--rule);">
+<section id="contested-hoa" class="contested-section" style="border-top: 1px solid var(--rule);">
   <div class="contested-object reverse" style="max-width:var(--max); margin:0 auto; padding:0 var(--pad);">
     <div class="contested-img-wrap">
-      <img src="https://www.britishmuseum.org/sites/default/files/styles/uncropped_large/public/2020-09/Hoa_Hakananai%E2%80%99a_Room%2024_British_Museum_2_0.jpg"
+      <img src="./assets/images/Hoa_Hakananaia_Room_24_British_Museum_2_0.jpg"
            alt="Hoa Hakananai'a" loading="lazy">
-      <div class="contested-tag">Contested</div>
     </div>
 
     <div class="contested-text">
-      <span class="eyebrow">05b — Contested highlight</span>
+      <span class="eyebrow">05b — Highlight In-Focus</span>
       <h2>Hoa<br><em>Hakananai'a</em></h2>
 
       <div class="fact-row"><span class="fact-key">Origin</span><span class="fact-val">Rapa Nui (Easter Island), c. 1000–1200 AD</span></div>
       <div class="fact-row"><span class="fact-key">Location</span><span class="fact-val">Room 24, British Museum</span></div>
-      <div class="fact-row"><span class="fact-key">How acquired</span><span class="fact-val">Taken by HMS Topaze crew, 1868</span></div>
+      <div class="fact-row"><span class="fact-key">Manner of Acquisition</span><span class="fact-val">Taken by HMS Topaze crew, 1868</span></div>
       <div class="fact-row"><span class="fact-key">Status</span><span class="fact-val">Rapa Nui formally requested return, 2018</span></div>
 
       <div class="quote-block">
-        <p>"[Provisional] A quote from Rapa Nui representatives or the Chilean government regarding the statue's return will appear here. This is placeholder text."</p>
-        <cite>— Source to be confirmed by [colleague name]</cite>
+        <p>“The British taking the moai from our island is like me going into your house and taking your grandfather to display in my living room.”</p>
+        <cite>— Anakena Manutomatoma, Rapa Nui elder. Source: <a href="https://www.bbc.com/news/world-latin-america-46222276" target="_blank" rel="noopener">BBC</a></cite>
       </div>
 
       <p style="font-size:14px; color:var(--stone); font-style:italic; line-height:1.65;">
-        [Provisional] The story of Hoa Hakananai'a — what it means to the Rapa Nui people, how it left the island, and what its return would signify — will be written here. Approximately 150–200 words.
+        Officially requested to be repatriated in 2018, and yet to return, the withholding of the moai despite its exceeding spiritual meaning to the Rapa Nui, belies the Museum’s blatant disregard of the very culture it claims to respect and understand.
       </p>
     </div>
   </div>
@@ -287,12 +349,12 @@
 <!-- ─── SECTION 06: FINDSPOT ─── -->
 <section id="findspot" class="section">
   <div class="inner">
-    <span class="eyebrow reveal">06 — Where were they found?</span>
+    <span class="eyebrow reveal">04 — Where were they found?</span>
     <h2 class="reveal">The museum's <em>acquisition geography</em></h2>
     <p class="lead reveal">Beyond where objects were made, we looked at where they were physically found or excavated. This is the geography of the museum's collecting history — distinct from, but related to, the production place data.</p>
 
     <div class="callout reveal">
-      <p>"46% of all on-display objects have no recorded production place. For every object — with or without a known origin — we asked: where were you found?"</p>
+      <p>"46% of all on-display objects have no recorded production place. For every object — with or without a known origin — we asked where it was found"</p>
       <small>Findspot ≠ production place · these are kept as separate datasets throughout</small>
     </div>
 
@@ -309,9 +371,9 @@
       </div>
     </div>
 
-    <div class="two-col reveal" style="margin-top:48px; gap:clamp(24px,4vw,56px);">
+    <div class="two-col reveal" style="margin-top:48px; gap:clamp(24px,4vw,56px); align-items:center;">
       <div>
-        <span class="eyebrow" style="margin-bottom:16px;">Top 15 countries by findspot (all objects)</span>
+        <span class="eyebrow" style="margin-bottom:4px;">Top 15 countries by findspot (all objects)</span>
         <div id="findspot-bars"></div>
       </div>
       <div>
@@ -319,8 +381,8 @@
           <p>"The UK leads findspot data with 7,351 objects — but this means objects were <strong>found</strong> in Britain, not necessarily made there. A Roman coin from Suffolk was minted in Rome."</p>
           <small>Pre-1500 AD: real excavation sites · Post-1500 AD: often dealer / auction locations</small>
         </div>
-        <p style="font-size:14px; color:var(--stone); font-style:italic; line-height:1.65; margin-top:24px;">
-          The UK's dominance of findspot data reflects the British Museum's vast collection of domestic archaeological material — Iron Age hoards, Roman-era finds, Anglo-Saxon burials — physically excavated from British soil. These are genuinely British objects. The remaining countries on the list largely reflect the museum's 19th and early 20th-century excavation programmes abroad.
+        <p style="font-size:17px; color:var(--stone); font-style:italic; line-height:1.65; margin-top:24px;">
+          The UK's dominance of findspot data reflects the British Museum's vast collection of domestic archaeological material — Iron Age hoards, Roman-era finds, Anglo-Saxon burials — physically excavated from British soil. The remaining countries on the list largely reflect the museum's 19th and early 20th-century excavation programmes abroad.
         </p>
       </div>
     </div>
@@ -330,7 +392,7 @@
 <!-- ─── SECTION 07: CORRELATION ─── -->
 <section id="correlation" class="section">
   <div class="inner">
-    <span class="eyebrow reveal">07 — Did objects ever leave home?</span>
+    <span class="eyebrow reveal">05 — Did objects ever leave home?</span>
     <h2 class="reveal">Made here, found <em>there</em></h2>
     <p class="lead reveal">For pre-1500 AD objects with both fields recorded. Where they were made vs where they were physically found. The distance between those two points is a story of trade, empire, and collection.</p>
 
@@ -363,7 +425,7 @@
 <!-- ─── SECTION 08: METHODOLOGY ─── -->
 <section id="method" class="section">
   <div class="inner">
-    <span class="eyebrow reveal">08 — How we did this</span>
+    <span class="eyebrow reveal">06 — How we did this</span>
     <h2 class="reveal">Methodology</h2>
 
     <div class="method-grid reveal">
@@ -403,8 +465,7 @@
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <span class="ft">Data: British Museum collection API · Analysis: original research · 2024–25</span>
-  <span class="ft">Masters in Data Visualisation</span>
+  <span class="ft">Data: British Museum collection API · June 2026</span>
 </footer>
 
 <!-- ─── TOOLTIPS ─── -->
@@ -413,6 +474,45 @@
   <div class="dt-n"></div>
   <div class="dt-l">objects on display</div>
 </div>
+
+<!-- ─── INTRO ANIMATION ─── -->
+<script>
+(function () {
+  const overlay     = document.getElementById('intro-overlay');
+  const heroContent = document.getElementById('hero-content');
+
+  const GONE  = 'rgba(26,22,20,0.08)';
+  const DELAY = 450;
+
+  function fade(id) {
+    const el = document.getElementById(id);
+    el.style.opacity = '0.08';
+  }
+
+  // Sequential fade: col1 → col2 → col3 → col4 → caption → overlay out
+  setTimeout(() => {
+    fade('gcol-1');
+    setTimeout(() => {
+      fade('gcol-2');
+      setTimeout(() => {
+        fade('gcol-3');
+        setTimeout(() => {
+          fade('gcol-4');
+          // Fade overlay, reveal hero
+          setTimeout(() => {
+              overlay.style.transition = 'opacity 0.9s ease';
+              overlay.style.opacity    = '0';
+              heroContent.classList.add('visible');
+              const heroBuilding = document.querySelector('.hero-building');
+              if (heroBuilding) heroBuilding.style.opacity = '1';
+              setTimeout(() => overlay.remove(), 950);
+            }, 700);
+        }, DELAY);
+      }, DELAY);
+    }, DELAY);
+  }, 300);
+})();
+</script>
 
 <!-- ─── SCRIPTS (ES modules) ─── -->
 <script type="module" src="./js/main.js"></script>

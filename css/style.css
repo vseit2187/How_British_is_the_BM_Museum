@@ -231,7 +231,7 @@ nav {
   border-left: 3px solid var(--gold);
   padding: 18px 22px;
   background: var(--gold-light);
-  margin: 32px 0;
+  margin: 32px auto;
   max-width: 64ch;
 }
 
@@ -250,6 +250,7 @@ nav {
   text-transform: uppercase;
   color: var(--stone);
   margin-top: 9px;
+  text-align: center;
 }
 
 /* ── PROVISIONAL BANNER ── */
@@ -270,6 +271,7 @@ nav {
 .toggle-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   margin-bottom: 24px;
   flex-wrap: wrap;
@@ -462,16 +464,16 @@ nav {
 .highlights-intro {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: center;
+  gap: 48px;
   margin-bottom: 40px;
-  flex-wrap: wrap;
 }
 
 .highlights-zero {
   font-size: clamp(48px, 8vw, 96px);
   font-weight: 400;
   letter-spacing: -0.04em;
-  line-height: 0.9;
+  line-height: 1;
   color: var(--terra);
 }
 
@@ -483,6 +485,45 @@ nav {
   color: var(--stone);
   max-width: 22ch;
   line-height: 1.5;
+  margin-top: 8px;
+}
+
+.highlights-counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  align-items: flex-end;
+}
+
+.counter-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 48px;
+}
+
+.counter-num {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--terra);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.counter-num.counter-bump {
+  transform: scale(1.25);
+  color: var(--ink);
+}
+
+.counter-lbl {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  white-space: nowrap;
 }
 
 .highlights-grid {
@@ -517,7 +558,7 @@ nav {
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.highlight-card:hover img {
+a.highlight-card:hover img {
   transform: scale(1.04);
   filter: grayscale(0%);
 }
@@ -536,7 +577,7 @@ nav {
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.6);
+  color: rgba(245,240,232,0.9);
   margin-bottom: 4px;
 }
 
@@ -550,6 +591,7 @@ nav {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
   background: var(--terra);
   color: #F5F0E8;
   font-family: 'Courier New', monospace;
@@ -558,6 +600,86 @@ nav {
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: 1px;
+}
+
+/* ── TIMELINE ── */
+.timeline-title {
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.timeline-intro {
+  font-size: 15px;
+  color: var(--stone);
+  font-style: italic;
+  line-height: 1.65;
+  max-width: 64ch;
+  margin: 0 auto 36px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+.timeline-item {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.timeline-year {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  width: 44px;
+  flex-shrink: 0;
+  padding-top: 2px;
+  text-align: right;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 68px;
+  top: 6px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+}
+
+.timeline-event {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.55;
+  padding-left: 24px;
+}
+
+.timeline-body {
+  font-size: 14px;
+  color: var(--stone);
+  font-style: italic;
+  line-height: 1.65;
+  max-width: 64ch;
+  margin: 0 auto 20px;
 }
 
 /* ── CONTESTED OBJECTS ── */
@@ -615,6 +737,23 @@ nav {
 .contested-text .eyebrow { margin-bottom: 12px; }
 
 .contested-text h2 { margin-bottom: 20px; }
+
+/* ── Centred section headers (all except hero) ── */
+.section .eyebrow,
+.section h2,
+.section .inner p,
+.section .inner .lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#hero .eyebrow,
+#hero h1,
+#hero .lead,
+#hero p {
+  text-align: left;
+}
 
 .fact-row {
   display: flex;
@@ -695,7 +834,7 @@ nav {
   font-family: 'Courier New', monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
-  color: var(--ink-dim);
+  color: var(--stone);
   margin-top: 12px;
   text-align: center;
 }
@@ -717,6 +856,45 @@ footer {
   flex-wrap: wrap;
   gap: 12px;
   border-top: 1px solid var(--rule);
+}
+
+/* ─── INTRO ANIMATION OVERLAY ─── */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #F5F0E8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#intro-svg {
+  width: min(400px, 75vw);
+  will-change: transform;
+}
+#intro-caption {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.3vw, 13px);
+  letter-spacing: 0.14em;
+  color: rgba(26,22,20,0.4);
+  margin-top: 24px;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  text-transform: uppercase;
+}
+
+.hero-building {
+  opacity: 0;
+}
+#hero-content {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+#hero-content.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .ft {

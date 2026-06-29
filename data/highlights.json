@@ -8,7 +8,7 @@
     "room": "Room 4",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Rosetta_Stone.JPG/400px-Rosetta_Stone.JPG"
+    "image": "./assets/images/Rosetta-Stone-in-situ.webp"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "room": "Room 13",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sophilos_dinos_BM_1971.jpg/400px-Sophilos_dinos_BM_1971.jpg"
+    "image": "./assets/images/sophilos-dinos-1000.png"
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "room": "Room 18",
     "british": false,
     "contested": true,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Elgin_Marbles_frieze_east_I.jpg/400px-Elgin_Marbles_frieze_east_I.jpg"
+    "image": "./assets/images/Parthenon-east-pediment-1000x782.jpg"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "room": "Room 23",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Crouching_Venus_-_British_Museum.jpg/400px-Crouching_Venus_-_British_Museum.jpg"
+    "image": "./assets/images/Crouching-Venus-861x1000.jpg"
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@
     "room": "Room 4",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Younger_Memnon_Ramesses_II_bust.jpg/400px-Younger_Memnon_Ramesses_II_bust.jpg"
+    "image": "./assets/images/bust-ramesses-1000.jpg"
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@
     "room": "Room 25",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Ife-Benin_head.jpg/400px-Ife-Benin_head.jpg"
+    "image": "./assets/images/Brass-Ife-head-769x1024.png"
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@
     "room": "Room 25",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Tree_of_Life_-_British_Museum.jpg/400px-Tree_of_Life_-_British_Museum.jpg"
+    "image": "./assets/images/Room-25-Africa-Gallery-tree-of-life.jpg"
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "room": "Room 26",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Akan_drum_Virginia_BM.jpg/400px-Akan_drum_Virginia_BM.jpg"
+    "image": "./assets/images/akan-drum-west-africa-1000.jpg"
   },
   {
     "id": 9,
@@ -96,7 +96,7 @@
     "room": "Room 27",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Double-headed_serpent_pectoral%2C_Aztec%2C_Mexico%2C_1400-1521_CE%2C_turquoise%2C_red_spondylus_shell%2C_white_conch_shell%2C_pine_wood_-_British_Museum_-_London%2C_England_-_DSC04085.jpg/400px-Double-headed_serpent_pectoral%2C_Aztec%2C_Mexico%2C_1400-1521_CE%2C_turquoise%2C_red_spondylus_shell%2C_white_conch_shell%2C_pine_wood_-_British_Museum_-_London%2C_England_-_DSC04085.jpg"
+    "image": "./assets/images/A-turquoise-two-headed-serpent-1000x500.jpg"
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "room": "Room 1",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/British_Museum_-_Piranesi_vase.jpg/400px-British_Museum_-_Piranesi_vase.jpg"
+    "image": "./assets/images/Enlightenment-Gallery-Piranesi-vase-1304x1304.jpg"
   },
   {
     "id": 11,
@@ -118,7 +118,7 @@
     "room": "Great Court",
     "british": false,
     "contested": false,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/British_Museum_-_Great_Court_Totem_Pole.jpg/400px-British_Museum_-_Great_Court_Totem_Pole.jpg"
+    "image": "./assets/images/Haida-totem-pole-1000x1884.jpg"
   },
   {
     "id": 12,
@@ -129,6 +129,6 @@
     "room": "Room 24",
     "british": false,
     "contested": true,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Hoa_Hakananai%27a.jpg/400px-Hoa_Hakananai%27a.jpg"
+    "image": "./assets/images/Hoa_Hakananaia_Room_24_British_Museum_2_0.jpg"
   }
 ]

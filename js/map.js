@@ -84,9 +84,6 @@ export async function initMap() {
     .attr('font-size', 9).attr('fill', 'rgba(26,22,20,0.4)').attr('font-family', 'Courier New').text('Fewer');
   lg.append('text').attr('x', 96).attr('y', 20)
     .attr('font-size', 9).attr('fill', 'rgba(26,22,20,0.4)').attr('font-family', 'Courier New').text('More');
-  lg.append('rect').attr('x', 150).attr('width', 16).attr('height', 8).attr('fill', '#8B7355');
-  lg.append('text').attr('x', 170).attr('y', 8)
-    .attr('font-size', 9).attr('fill', 'rgba(26,22,20,0.4)').attr('font-family', 'Courier New').text('UK');
 
   // ── BAR CHART ──
   const barWrap = document.getElementById('bar-chart');
@@ -97,46 +94,93 @@ export async function initMap() {
     .sort((a, b) => b.count - a.count)
     .slice(0, 15);
 
-  const BW = Math.min(barWrap.clientWidth || 700, 700);
-  const bh = 22, gap = 6;
-  const margin = { top: 8, right: 55, bottom: 8, left: 108 };
-  const innerW = BW - margin.left - margin.right;
-  const TH = top15.length * (bh + gap) + margin.top + margin.bottom;
+  // tooltip
+  const barTip = d3.select(barWrap).append('div')
+    .style('position', 'absolute')
+    .style('pointer-events', 'none')
+    .style('background', 'rgba(245,240,232,0.96)')
+    .style('border', '1px solid rgba(26,22,20,0.12)')
+    .style('padding', '7px 12px')
+    .style('font-family', 'Courier New, monospace')
+    .style('font-size', '11px')
+    .style('letter-spacing', '0.06em')
+    .style('color', '#1A1614')
+    .style('border-radius', '2px')
+    .style('opacity', 0)
+    .style('transition', 'opacity 0.15s');
 
-  const x = d3.scaleLinear([0, top15[0].count], [0, innerW]);
+  d3.select(barWrap).style('position', 'relative');
 
-  const svgBar = d3.select('#bar-chart').append('svg')
-    .attr('viewBox', `0 0 ${BW} ${TH}`)
-    .attr('width', '100%');
+  function drawBars(containerWidth) {
+    d3.select('#bar-chart svg').remove();
 
-  const g = svgBar.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+    const BW = containerWidth;
+    const bh = 22, gap = 6;
+    const margin = { top: 8, right: 55, bottom: 8, left: 108 };
+    const innerW = BW - margin.left - margin.right;
+    const TH = top15.length * (bh + gap) + margin.top + margin.bottom;
+    const total = d3.sum(top15, d => d.count);
 
-  top15.forEach((d, i) => {
-    const y      = i * (bh + gap);
-    const isUK   = d.country === 'United Kingdom';
-    const color  = PALETTE[d.country] || '#9B8B7B';
+    const x = d3.scaleLinear([0, top15[0].count], [0, innerW]);
 
-    g.append('text')
-      .attr('x', -8).attr('y', y + bh / 2 + 4)
-      .attr('text-anchor', 'end')
-      .attr('font-family', 'Courier New').attr('font-size', 10).attr('letter-spacing', '0.04em')
-      .attr('fill', isUK ? '#1A1614' : 'rgba(26,22,20,0.5)')
-      .text(d.country);
+    const svgBar = d3.select('#bar-chart').append('svg')
+      .attr('viewBox', `0 0 ${BW} ${TH}`)
+      .attr('width', '100%');
 
-    g.append('rect')
-      .attr('x', 0).attr('y', y).attr('width', innerW).attr('height', bh)
-      .attr('fill', 'rgba(26,22,20,0.05)').attr('rx', 1);
+    const g = svgBar.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    g.append('rect')
-      .attr('x', 0).attr('y', y).attr('width', 0).attr('height', bh)
-      .attr('fill', color).attr('opacity', isUK ? 1 : 0.75).attr('rx', 1)
-      .transition().duration(1200).delay(i * 55).ease(d3.easeCubicOut)
-      .attr('width', x(d.count));
+    top15.forEach((d, i) => {
+      const y     = i * (bh + gap);
+      const isUK  = d.country === 'United Kingdom';
+      const color = PALETTE[d.country] || '#9B8B7B';
 
-    g.append('text')
-      .attr('x', x(d.count) + 5).attr('y', y + bh / 2 + 4)
-      .attr('font-family', 'Courier New').attr('font-size', 10)
-      .attr('fill', 'rgba(26,22,20,0.35)')
-      .text((d.count / 1000).toFixed(1) + 'k');
+      g.append('text')
+        .attr('x', -8).attr('y', y + bh / 2 + 4)
+        .attr('text-anchor', 'end')
+        .attr('font-family', 'Courier New').attr('font-size', 10).attr('letter-spacing', '0.04em')
+        .attr('fill', isUK ? '#1A1614' : 'rgba(26,22,20,0.5)')
+        .text(d.country);
+
+      g.append('rect')
+        .attr('x', 0).attr('y', y).attr('width', innerW).attr('height', bh)
+        .attr('fill', 'rgba(26,22,20,0.05)').attr('rx', 1);
+
+      g.append('rect')
+        .attr('x', 0).attr('y', y).attr('width', 0).attr('height', bh)
+        .attr('fill', color).attr('opacity', isUK ? 1 : 0.75).attr('rx', 1)
+        .transition().duration(800).delay(i * 40).ease(d3.easeCubicOut)
+        .attr('width', x(d.count));
+
+      g.append('text')
+        .attr('x', x(d.count) + 5).attr('y', y + bh / 2 + 4)
+        .attr('font-family', 'Courier New').attr('font-size', 10)
+        .attr('fill', 'rgba(26,22,20,0.35)')
+        .text((d.count / 1000).toFixed(1) + 'k');
+
+      // invisible hit area for hover
+      g.append('rect')
+        .attr('x', -margin.left).attr('y', y)
+        .attr('width', BW).attr('height', bh)
+        .attr('fill', 'transparent')
+        .style('cursor', 'default')
+        .on('mouseover', function(event) {
+          const pct = (d.count / total * 100).toFixed(1);
+          barTip.style('opacity', 1)
+            .html(`<strong>${d.country}</strong><br>${d.count.toLocaleString()} objects · ${pct}% of top 15`);
+        })
+        .on('mousemove', function(event) {
+          const [mx, my] = d3.pointer(event, barWrap);
+          barTip.style('left', (mx + 14) + 'px').style('top', (my - 28) + 'px');
+        })
+        .on('mouseout', () => barTip.style('opacity', 0));
+    });
+  }
+
+  drawBars(barWrap.clientWidth || 700);
+
+  const ro = new ResizeObserver(entries => {
+    const w = entries[0].contentRect.width;
+    if (w > 0) drawBars(w);
   });
+  ro.observe(barWrap);
 }
