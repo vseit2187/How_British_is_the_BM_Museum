@@ -1147,7 +1147,7 @@ footer {
   font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--stone);
+  color: var(--bg);
 }
 
 /* Back Design */
