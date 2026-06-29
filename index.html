@@ -258,7 +258,7 @@
     <div id="map-tip"></div>
 
     <div style="margin-top:48px;" class="reveal">
-      <span class="eyebrow" style="margin-bottom:16px;">Top 15 countries by objects on display</span>
+      <span class="eyebrow" style="margin-bottom:16px;">01C — Where was it made? Top 15 contributing countries</span>
       <div id="bar-chart"></div>
     </div>
      <div class="callout" style="margin:32px 0 0; max-width:none; width:100%;">
@@ -268,12 +268,88 @@
   </div>
 </section>
 
+<!-- ─── SECTION 06: FINDSPOT ─── -->
+<section id="findspot" class="section">
+  <div class="inner">
+    <span class="eyebrow reveal">02 — Where was it found?</span>
+    <h2 class="reveal">The museum's <em>acquisition geography</em></h2>
+    <p class="lead reveal">Beyond where objects were made, we looked at where they were physically found or excavated. </p>
+
+    <div class="callout reveal">
+      <p>"46% of all on-display objects have no recorded production place. For every object — with or without a known origin — we asked where it was found"</p>
+    </div>
+
+    <div class="panel-pair reveal">
+      <div class="panel">
+        <div class="panel-lbl">Objects with a findspot</div>
+        <div class="panel-num" style="color:var(--gold);">26,467</div>
+        <div class="panel-note">58.6% of all on-display objects. 97.7% of these successfully mapped to a country.</div>
+      </div>
+      <div class="panel" style="border-left:none;">
+        <div class="panel-lbl">No findspot recorded</div>
+        <div class="panel-num" style="color:var(--stone);">18,894</div>
+        <div class="panel-note">No geographic information of any kind in the museum's catalogue for these objects.</div>
+      </div>
+    </div>
+
+    <div class="two-col reveal" style="margin-top:48px; gap:clamp(24px,4vw,56px); align-items:center;">
+      <div>
+        <span class="eyebrow" style="margin-bottom:4px;">Top 15 countries by findspot (all objects)</span>
+        <div id="findspot-bars"></div>
+      </div>
+      <div>
+        <div class="callout" style="margin-top:0;">
+          <p>"The UK leads findspot data with 7,351 objects — but this means objects were <strong>found</strong> in Britain, not necessarily made there. A Roman coin from Suffolk was minted in Rome."</p>
+          <small>Pre-1500 AD: real excavation sites · Post-1500 AD: often dealer / auction locations</small>
+        </div>
+        <p style="font-size:17px; color:var(--stone); font-style:italic; line-height:1.65; margin-top:24px;">
+          The UK's dominance of findspot data reflects the British Museum's vast collection of domestic archaeological material — Iron Age hoards, Roman-era finds, Anglo-Saxon burials — physically excavated from British soil. The remaining countries on the list largely reflect the museum's 19th and early 20th-century excavation programmes abroad.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── SECTION 07: CORRELATION ─── -->
+<section id="correlation" class="section">
+  <div class="inner">
+    <span class="eyebrow reveal">05 — Did objects ever leave home?</span>
+    <h2 class="reveal">Made here, found <em>there</em></h2>
+    <p class="lead reveal">For pre-1500 AD objects with both fields recorded. Where they were made vs where they were physically found. The distance between those two points is a story of trade, empire, and collection.</p>
+
+    <div class="panel-pair reveal">
+      <div class="panel">
+        <div class="panel-lbl">Never left home</div>
+        <div class="panel-num">65.8%</div>
+        <div class="panel-note">Made and found in the same country. The majority of ancient objects in this collection never crossed a border.</div>
+      </div>
+      <div class="panel" style="border-left:none;">
+        <div class="panel-lbl">Crossed a border</div>
+        <div class="panel-num" style="color:var(--terra);">34.2%</div>
+        <div class="panel-note">Made in one country, found in another. These objects have a travel history — intentional or otherwise.</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:40px;">
+      <span class="eyebrow" style="margin-bottom:16px;">Top 10 production countries × top 8 findspot countries (pre-1500 AD)</span>
+      <div id="corr-chart"></div>
+      <p class="chart-note" style="margin-top:14px;">
+        <span style="color:#A09585;">■</span> Stone = stayed in same country &nbsp;·&nbsp;
+        <span style="color:var(--gold);">■</span> Gold = found in UK &nbsp;·&nbsp;
+        <span style="color:#6E9EC8;">■</span> Blue = other cross-border flow &nbsp;·&nbsp;
+        Flow width = object count &nbsp;·&nbsp; Pre-1500 AD only
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ─── SECTION 04: HIGHLIGHTS ─── -->
 <section id="highlights" class="section">
   <div class="inner">
     <span class="eyebrow reveal">03 — The must-see highlights</span>
     <h2 class="reveal">But what about the Museum's<br>highlights?</h2>
-    <p class="lead reveal">For those visiting in a hurry, the Museum has curated a list of 12 must-see highlights. The punchline? Not one of them is British...</p>
+    <p class="lead reveal">For those visiting in a hurry, perusing the whole collection is out of the question. Conveniently enough, the Museum has curated a list of 12 must-see highlights. The punchline? ...Not one of them is British.</p>
 
     <div class="highlights-intro reveal">
       <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
@@ -300,7 +376,7 @@
     </div>
 
     <div class="contested-text">
-      <span class="eyebrow">05a — Highlight In-Focus</span>
+      <span class="eyebrow">03a — Highlight In-Focus</span>
       <h2>The Parthenon<br><em>Sculptures</em></h2>
 
       <div class="fact-row"><span class="fact-key">Origin</span><span class="fact-val">Athens, Greece — 438–432 BC</span></div>
@@ -394,7 +470,7 @@
   </div>
 </section>
 
-<!-- ─── SECTION 05b: HOA HAKANANAI'A ─── -->
+<!-- ─── SECTION 04b: HOA HAKANANAI'A ─── -->
 <section id="contested-hoa" class="contested-section" style="border-top: 1px solid var(--rule);">
   <div class="contested-object reverse" style="max-width:var(--max); margin:0 auto; padding:0 var(--pad);">
     <div class="contested-img-wrap">
@@ -403,7 +479,7 @@
     </div>
 
     <div class="contested-text">
-      <span class="eyebrow">05b — Highlight In Soft Focus</span>
+      <span class="eyebrow">03b — Highlight In Soft Focus</span>
       <h2>Hoa<br><em>Hakananai'a</em></h2>
 
       <div class="fact-row"><span class="fact-key">Origin</span><span class="fact-val">Rapa Nui (Easter Island), c. 1000–1200 AD</span></div>
@@ -426,82 +502,6 @@
       <p style="font-size:14px; color:var(--stone); line-height:1.65;">
         Officially requested to be repatriated in 2018, and yet to return, the withholding of the moai despite its exceeding spiritual meaning to the Rapa Nui, belies the Museum’s blatant disregard of the very culture it claims to respect and understand.
 	  </p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SECTION 06: FINDSPOT ─── -->
-<section id="findspot" class="section">
-  <div class="inner">
-    <span class="eyebrow reveal">04 — Where were they found?</span>
-    <h2 class="reveal">The museum's <em>acquisition geography</em></h2>
-    <p class="lead reveal">Beyond where objects were made, we looked at where they were physically found or excavated. This is the geography of the museum's collecting history — distinct from, but related to, the production place data.</p>
-
-    <div class="callout reveal">
-      <p>"46% of all on-display objects have no recorded production place. For every object — with or without a known origin — we asked where it was found"</p>
-      <small>Findspot ≠ production place · these are kept as separate datasets throughout</small>
-    </div>
-
-    <div class="panel-pair reveal">
-      <div class="panel">
-        <div class="panel-lbl">Objects with a findspot</div>
-        <div class="panel-num" style="color:var(--gold);">26,467</div>
-        <div class="panel-note">58.6% of all on-display objects. 97.7% of these successfully mapped to a country.</div>
-      </div>
-      <div class="panel" style="border-left:none;">
-        <div class="panel-lbl">No findspot recorded</div>
-        <div class="panel-num" style="color:var(--stone);">18,894</div>
-        <div class="panel-note">No geographic information of any kind in the museum's catalogue for these objects.</div>
-      </div>
-    </div>
-
-    <div class="two-col reveal" style="margin-top:48px; gap:clamp(24px,4vw,56px); align-items:center;">
-      <div>
-        <span class="eyebrow" style="margin-bottom:4px;">Top 15 countries by findspot (all objects)</span>
-        <div id="findspot-bars"></div>
-      </div>
-      <div>
-        <div class="callout" style="margin-top:0;">
-          <p>"The UK leads findspot data with 7,351 objects — but this means objects were <strong>found</strong> in Britain, not necessarily made there. A Roman coin from Suffolk was minted in Rome."</p>
-          <small>Pre-1500 AD: real excavation sites · Post-1500 AD: often dealer / auction locations</small>
-        </div>
-        <p style="font-size:17px; color:var(--stone); font-style:italic; line-height:1.65; margin-top:24px;">
-          The UK's dominance of findspot data reflects the British Museum's vast collection of domestic archaeological material — Iron Age hoards, Roman-era finds, Anglo-Saxon burials — physically excavated from British soil. The remaining countries on the list largely reflect the museum's 19th and early 20th-century excavation programmes abroad.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SECTION 07: CORRELATION ─── -->
-<section id="correlation" class="section">
-  <div class="inner">
-    <span class="eyebrow reveal">05 — Did objects ever leave home?</span>
-    <h2 class="reveal">Made here, found <em>there</em></h2>
-    <p class="lead reveal">For pre-1500 AD objects with both fields recorded. Where they were made vs where they were physically found. The distance between those two points is a story of trade, empire, and collection.</p>
-
-    <div class="panel-pair reveal">
-      <div class="panel">
-        <div class="panel-lbl">Never left home</div>
-        <div class="panel-num">65.8%</div>
-        <div class="panel-note">Made and found in the same country. The majority of ancient objects in this collection never crossed a border.</div>
-      </div>
-      <div class="panel" style="border-left:none;">
-        <div class="panel-lbl">Crossed a border</div>
-        <div class="panel-num" style="color:var(--terra);">34.2%</div>
-        <div class="panel-note">Made in one country, found in another. These objects have a travel history — intentional or otherwise.</div>
-      </div>
-    </div>
-
-    <div class="reveal" style="margin-top:40px;">
-      <span class="eyebrow" style="margin-bottom:16px;">Top 10 production countries × top 8 findspot countries (pre-1500 AD)</span>
-      <div id="corr-chart"></div>
-      <p class="chart-note" style="margin-top:14px;">
-        <span style="color:#A09585;">■</span> Stone = stayed in same country &nbsp;·&nbsp;
-        <span style="color:var(--gold);">■</span> Gold = found in UK &nbsp;·&nbsp;
-        <span style="color:#6E9EC8;">■</span> Blue = other cross-border flow &nbsp;·&nbsp;
-        Flow width = object count &nbsp;·&nbsp; Pre-1500 AD only
-      </p>
     </div>
   </div>
 </section>
