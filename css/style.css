@@ -66,7 +66,6 @@ h1 em, h2 em {
 .lead {
   font-size: 16px;
   color: var(--stone);
-  font-style: italic;
   max-width: 56ch;
   margin-bottom: 40px;
   line-height: 1.72;
