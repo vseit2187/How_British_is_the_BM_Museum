@@ -781,7 +781,7 @@ a.highlight-card:hover img {
 .timeline-body {
   font-size: 14px;
   color: var(--stone);
-  font-style: italic;
+  
   line-height: 1.65;
   max-width: 64ch;
   margin: 0 auto 20px;
