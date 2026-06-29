@@ -268,15 +268,55 @@
   <div class="inner">
     <span class="eyebrow reveal">03 — The must-see highlights</span>
     <h2 class="reveal">But what about the Museum's<br>highlights?</h2>
-    <p class="lead reveal">For those visiting in a hurry, the Museum has curated a list of 12 must-see highlights. The punchline? Not one of them is British...</p>
+    <p class="lead reveal" style="max-width: 64ch;">For those visiting in a hurry, the Museum has curated a list of 12 must-see highlights. The punchline? Not one of them is British...</p>
 
     <div class="highlights-intro reveal">
-      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-        <div class="highlights-zero">0/12</div>
-        <div class="highlights-zero-label" style="text-align:center;">highlights are British in origin</div>
-      </div>
-     
+      <div class="highlights-counters" id="highlight-counters">
+        
+        <div class="counter-col" data-target="0" data-is-uk="true">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">UK</div>
+        </div>
 
+        <div class="counter-col" data-target="2">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Italy</div>
+        </div>
+        <div class="counter-col" data-target="2">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Greece</div>
+        </div>
+        <div class="counter-col" data-target="2">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Egypt</div>
+        </div>
+        <div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Nigeria</div>
+        </div>
+       <div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Ghana</div>
+        </div>
+	<div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Mozambique</div>
+        </div>
+	<div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Mexico</div>
+        </div>
+	<div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Easter Island</div>
+        </div>
+	<div class="counter-col" data-target="1">
+          <div class="counter-num">0</div>
+          <div class="counter-lbl">Graham Island</div>
+        </div>
+
+      </div>
+    </div>
     <div class="highlights-grid reveal" id="highlights-grid"></div>
     <p class="chart-note reveal" style="margin-top:16px;">
       Source: <a href="https://www.britishmuseum.org/blog/12-things-not-miss-british-museum" target="_blank" rel="noopener">British Museum</a> ·
@@ -607,6 +647,55 @@
       this.classList.toggle('is-flipped');
     });
   });
+</script>
+  
+<!-- ─── HIGHLIGHT COUNTER ─── -->  
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const counters = document.querySelectorAll('.counter-col');
+  let animationTriggered = false;
+
+  // We use IntersectionObserver so the animation only starts when the user scrolls to it
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !animationTriggered) {
+      animationTriggered = true;
+      startCounting();
+    }
+  }, { threshold: 0.5 }); // Triggers when 50% of the section is visible
+
+  observer.observe(document.getElementById('highlight-counters'));
+
+  function startCounting() {
+    let longestDuration = 1500; // 1.5 seconds total for the counting
+
+    counters.forEach(col => {
+      const numElement = col.querySelector('.counter-num');
+      const target = parseInt(col.getAttribute('data-target'));
+      const isUK = col.getAttribute('data-is-uk') === 'true';
+      let current = 0;
+
+      // Logic for the UK zero
+      if (isUK) {
+        // Wait for the others to finish, then pop the red color!
+        setTimeout(() => {
+          numElement.classList.add('uk-punchline');
+        }, longestDuration + 200); 
+        return;
+      }
+
+      // Logic for counting the others
+      let stepTime = Math.abs(Math.floor(longestDuration / target));
+      
+      let timer = setInterval(() => {
+        current += 1;
+        numElement.textContent = current;
+        if (current >= target) {
+          clearInterval(timer);
+        }
+      }, stepTime);
+    });
+  }
+});
 </script>
 </body>
 </html>
