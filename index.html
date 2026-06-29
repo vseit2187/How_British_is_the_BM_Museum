@@ -501,47 +501,6 @@
   </div>
 </section>
 
-<!-- ─── SECTION 08: METHODOLOGY ─── -->
-<section id="method" class="section">
-  <div class="inner">
-    <span class="eyebrow reveal">06 — How we did this</span>
-    <h2 class="reveal">Methodology</h2>
-
-    <div class="method-grid reveal">
-      <div>
-        <div class="meth-n">Source</div>
-        <div class="meth-t">British Museum's own API</div>
-        <div class="meth-b">Data pulled from britishmuseum.org/collection — the same system that powers their public search. Every on-display object's "Production place" field was read individually.</div>
-      </div>
-      <div>
-        <div class="meth-n">Country mapping</div>
-        <div class="meth-t">1,270 place names resolved</div>
-        <div class="meth-b">Every unique place string — from "Attica (Greece)" to "Stoke-on-Trent" — was mapped to a modern country. Zero entries left unmapped in the production place dataset.</div>
-      </div>
-      <div>
-        <div class="meth-n">Known gap</div>
-        <div class="meth-t">46% have no origin recorded</div>
-        <div class="meth-b">The museum itself has not filled in the production place field for nearly half of on-display objects. This is reported honestly throughout — never guessed at or estimated.</div>
-      </div>
-      <div>
-        <div class="meth-n">~7% overlap</div>
-        <div class="meth-t">Date-bucket boundary effect</div>
-        <div class="meth-b">The API caps results at 10,000 per query. Splitting retrieval into 11 date buckets means objects with fuzzy date ranges may appear in two buckets. Affects all countries equally.</div>
-      </div>
-      <div>
-        <div class="meth-n">45,185 vs ~80,000</div>
-        <div class="meth-t">The museum's own figures differ</div>
-        <div class="meth-b">The British Museum publicly states ~80,000 objects are on display. Our API search returned 45,185. The gap likely reflects incomplete digital records for some galleries.</div>
-      </div>
-      <div>
-        <div class="meth-n">Findspot</div>
-        <div class="meth-t">Always kept separate</div>
-        <div class="meth-b">Where objects were physically found is not the same as where they were made. The two datasets are never mixed — findspot is supplementary context, clearly labelled throughout.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─── SECTION 08: CREDITS ─── -->
 <section id="method" class="section">
   <div class="inner">
@@ -592,24 +551,6 @@
       </div>
 
     </div>
-  </div>
-</section>
-
-<!-- ─── SECTION 09: CREDITS ─── -->
-<section id="credits" class="section" style="background: rgba(0,0,0,0.02); padding: 80px 0;">
-  <div class="inner">
-    <span class="eyebrow reveal">07 — Credits</span>
-    <h2 class="reveal">Project Credits</h2>
-
-    <div class="method-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-      
-      <div>
-        <div class="meth-n">Team Members</div>
-        <div class="meth-t">Vassilis Seitaridis</div>
-        <div class="meth-t">Ermina Angelaki</div>
-	      <div class="meth-t">Christina Zontanou</div>
-      </div>
-
   </div>
 </section>
 
