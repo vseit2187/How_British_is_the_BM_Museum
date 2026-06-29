@@ -193,6 +193,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 5%;
 }
 
 .building-caption {
@@ -683,6 +684,14 @@ a.highlight-card:hover img {
 }
 
 /* ── CONTESTED OBJECTS ── */
+#contested > .inner {
+  text-align: center;
+}
+#contested > .inner .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .contested-section {
   padding: clamp(64px, 9vw, 112px) var(--pad);
   border-bottom: 1px solid var(--rule);
@@ -753,6 +762,11 @@ a.highlight-card:hover img {
 #hero .lead,
 #hero p {
   text-align: left;
+}
+
+#hero .lead,
+#hero #hero-content > p {
+  margin-bottom: 4px;
 }
 
 .fact-row {

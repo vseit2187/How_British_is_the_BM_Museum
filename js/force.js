@@ -122,9 +122,11 @@ export async function initForce() {
   for (let i = 0; i < ticksNeeded; i++) prewarm.tick();
 
   const dots = g.selectAll('circle').data(nodes).join('circle')
-    .attr('r',       d => d.r)
-    .attr('fill',    d => d.color)
-    .attr('opacity', d => d.id === 'unknown' ? 0.22 : 0.78)
+    .attr('r',            d => d.r)
+    .attr('fill',         d => d.id === 'unknown' ? 'none' : d.color)
+    .attr('stroke',       d => d.id === 'unknown' ? 'rgba(26,22,20,0.3)' : 'none')
+    .attr('stroke-width', d => d.id === 'unknown' ? 0.6 : 0)
+    .attr('opacity',      d => d.id === 'unknown' ? 1 : 0.78)
     .attr('cx', d => d.x)
     .attr('cy', d => d.y);
 
@@ -164,15 +166,18 @@ export async function initForce() {
 
   // Tooltip
   const tip = document.getElementById('dot-tip');
-  dots.filter(d => d.id !== 'unknown')
-    .on('mousemove', (event, d) => {
+  dots.on('mousemove', function (event, d) {
       tip.style.display = 'block';
       tip.style.left = (event.clientX + 16) + 'px';
       tip.style.top  = (event.clientY - 52) + 'px';
-      tip.querySelector('.dt-c').textContent = d.name;
+      tip.querySelector('.dt-c').textContent = d.id === 'unknown' ? 'Unknown origin' : d.name;
       tip.querySelector('.dt-n').textContent = d.count.toLocaleString();
+      if (d.id === 'unknown') d3.select(this).attr('stroke', 'rgba(26,22,20,0.7)').attr('stroke-width', 1);
     })
-    .on('mouseleave', () => { tip.style.display = 'none'; });
+    .on('mouseleave', function (event, d) {
+      tip.style.display = 'none';
+      if (d.id === 'unknown') d3.select(this).attr('stroke', 'rgba(26,22,20,0.3)').attr('stroke-width', 0.6);
+    });
 
   // Live simulation — starts from pre-warmed positions, quickly settles any residual
   const sim = d3.forceSimulation(nodes)
@@ -238,7 +243,7 @@ export async function initForce() {
       dots.filter(d => !d.isUK && d.id !== 'unknown')
         .transition().duration(600).delay(150).attr('opacity', 0.78);
       dots.filter(d => d.id === 'unknown')
-        .transition().duration(600).delay(150).attr('opacity', 0.22);
+        .transition().duration(600).delay(150).attr('opacity', 1);
       dots.filter(d => d.isUK)
         .transition().duration(400).attr('opacity', 0.78).attr('r', 2.9);
 
