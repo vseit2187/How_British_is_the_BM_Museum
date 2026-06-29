@@ -1132,13 +1132,13 @@ footer {
 
 /* Front Design */
 .flip-card-front {
-  background-color: var(--bg-alt);
+  background-color: #6E8E9B;
 }
 
 .flip-card-front h3 {
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 400;
-  color: var(--gold);
+  color: var(--bg);
   margin-bottom: 24px;
 }
 
