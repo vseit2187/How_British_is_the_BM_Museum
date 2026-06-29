@@ -367,6 +367,86 @@ nav {
   color: var(--ink-dim);
 }
 
+/* ── SCROLLYTELLING ── */
+.scrolly-section {
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: 0;
+}
+
+.scrolly {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.scrolly-graphic {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolly-graphic-inner { width: 100%; }
+
+.scrolly-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.step {
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+}
+
+.step:first-child { min-height: 80vh; }
+.step:last-child  { min-height: 80vh; }
+
+.step-card {
+  background: rgba(245, 240, 232, 0.92);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(26, 22, 20, 0.06);
+  opacity: 0.3;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.step.is-active .step-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-card h3 {
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: 16px;
+  color: var(--stone);
+  line-height: 1.65;
+}
+
+@media (max-width: 720px) {
+  .scrolly { grid-template-columns: 1fr; gap: 0; }
+  .scrolly-graphic { height: 70vh; top: 0; }
+  .step { min-height: 85vh; }
+}
+
 /* ── PANELS ── */
 .panel-pair {
   display: grid;
@@ -603,16 +683,6 @@ a.highlight-card:hover img {
   border-radius: 1px;
 }
 
-/* ── ACQUISITION ── */
-.acquisition-title {
-  font-size: clamp(16px, 2.2vw, 24px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
-  color: var(--ink);
-  text-align: center;
-}
-
 /* ── TIMELINE ── */
 .timeline-title {
   font-size: clamp(16px, 2.2vw, 24px);
@@ -641,47 +711,72 @@ a.highlight-card:hover img {
 .timeline::before {
   content: '';
   position: absolute;
-  left: 72px;
+  left: 100px;
   top: 0; bottom: 0;
-  width: 1px;
+  width: 2px;
   background: var(--rule);
+}
+
+/* Gold progress spine that fills as you scroll through the timeline */
+.timeline-progress {
+  position: absolute;
+  left: 100px;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: var(--gold);
 }
 
 .timeline-item {
   display: flex;
-  gap: 28px;
-  align-items: flex-start;
-  margin-bottom: 24px;
+  gap: 40px;
+  align-items: center;
+  min-height: 42vh;
   position: relative;
+  opacity: 0.25;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.timeline-item.is-active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline-year {
   font-family: 'Courier New', monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--gold);
-  width: 44px;
+  width: 72px;
   flex-shrink: 0;
-  padding-top: 2px;
   text-align: right;
 }
 
 .timeline-item::after {
   content: '';
   position: absolute;
-  left: 68px;
-  top: 6px;
-  width: 9px; height: 9px;
+  left: 93px;
+  top: 50%;
+  width: 16px; height: 16px;
   border-radius: 50%;
+  background: var(--ink-dim);
+  border: 3px solid var(--bg);
+  transform: translateY(-50%);
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.timeline-item.is-active::after {
   background: var(--gold);
-  border: 2px solid var(--bg);
+  transform: translateY(-50%) scale(1.35);
 }
 
 .timeline-event {
-  font-size: 14px;
+  font-size: clamp(16px, 2vw, 22px);
   color: var(--ink);
-  line-height: 1.55;
-  padding-left: 24px;
+  line-height: 1.5;
+  padding-left: 36px;
 }
 
 .timeline-body {
@@ -1038,7 +1133,7 @@ footer {
 
 /* Front Design */
 .flip-card-front {
-  background-color: #F0E6D2;
+  background-color: var(--bg-alt);
 }
 
 .flip-card-front h3 {

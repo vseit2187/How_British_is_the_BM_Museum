@@ -192,26 +192,50 @@
 </section>
 
  
-<!-- ─── SECTION 01: FORCE LAYOUT ─── -->
-<section id="overview" class="section">
+<!-- ─── SECTION 01: FORCE LAYOUT (scrollytelling) ─── -->
+<section id="overview" class="section scrolly-section">
   <div class="inner">
     <span class="eyebrow reveal">01 — The on-display artefacts</span>
+  </div>
 
-    <div class="toggle-row reveal">
-      <span class="t-lbl active" id="lbl-all">All countries</span>
-      <div class="toggle-btn" id="force-toggle">
-        <div class="t-knob"></div>
+  <div class="scrolly">
+    <!-- Sticky graphic -->
+    <div class="scrolly-graphic">
+      <div class="scrolly-graphic-inner">
+        <div class="scrolly-meta">
+          <span class="t-lbl active" id="lbl-all">All countries</span>
+          <span class="t-lbl" id="lbl-uk">British only</span>
+          <span class="pill">1 dot = 10 objects</span>
+          <span class="pill">Total: 45,185</span>
+        </div>
+        <div id="force-wrap" style="position:relative; width:100%;">
+          <svg id="force-svg" style="display:block; width:100%;"></svg>
+        </div>
+        <div class="dot-legend" id="dot-legend"></div>
       </div>
-      <span class="t-lbl" id="lbl-uk">British only</span>
-      <span class="pill">1 dot = 10 objects</span>
-      <span class="pill">Total: 45,185</span>
     </div>
 
-    <div id="force-wrap" class="reveal" style="position:relative; width:100%;">
-      <svg id="force-svg" style="display:block; width:100%;"></svg>
+    <!-- Steps -->
+    <div class="scrolly-steps">
+      <div class="step" data-step="0">
+        <div class="step-card">
+          <h3>Every object, as a dot</h3>
+          <p>All 45,185 objects on display, clustered by where they were made. Each dot represents 10 objects, and the United Kingdom sits at the centre.</p>
+        </div>
+      </div>
+      <div class="step" data-step="1">
+        <div class="step-card">
+          <h3>Nearly half have no origin</h3>
+          <p>22,528 objects — the faint outlined cluster — have no recorded production place at all. The museum itself simply hasn't catalogued where they were made.</p>
+        </div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-card">
+          <h3>Only 1 in 5 is British</h3>
+          <p>Of the objects with a known origin, just <strong>19.1%</strong> were made in the United Kingdom. Watch the British cluster pull away from everything else.</p>
+        </div>
+      </div>
     </div>
-
-    <div class="dot-legend reveal" id="dot-legend"></div>
   </div>
 </section>
 
@@ -287,17 +311,16 @@
     </div>
   </div>
   
-  <div class="acquisition-subsection" style="max-width:var(--max); margin:0 auto; padding:clamp(40px,6vw,72px) var(--pad);">
-    <h3 class="acquisition-title">On The Manner of Acquisition</h3>
+  <div class="inner" style="margin-top:clamp(40px,6vw,72px);">
+    <h3 style="text-align:center;">On The Manner of Acquisition</h3>
 
+    <p class="lead" style="max-width:68ch; margin-left:auto; margin-right:auto; text-align:center;">
+      Click on the cards below to find out what doesn’t add up in the statement below:
+    </p>
 
     <blockquote style="max-width:60ch; margin:20px auto 0; padding:20px 28px; text-align:center; background:var(--terra-lt); border:1px solid var(--terra); border-radius:4px; color:var(--ink); font-style:italic; line-height:1.6;">
       “The sculptures were removed legally by Lord Elgin from the Parthenon, as a permit from the governing authority in Greece was granted.”
     </blockquote>
-
-     <p class="lead" style="max-width:68ch; margin-left:auto; margin-right:auto; text-align:center;">
-      Click on the cards below to find out about two issues with the above statement:
-    </p>
 
     <div class="flip-card-grid">
       
@@ -386,7 +409,7 @@
 
       <p style="font-size:14px; color:var(--stone); font-style:italic; line-height:1.65;">
         ‘Hoa Haka Nana'ia’, which translates to ‘stolen/lost friend’, is the name of one of the moai in the Museum’s collection. 
-      </p>
+      </p><br>
      <p style="font-size:14px; color:var(--stone); font-style:italic; line-height:1.65;">
       For the Rapa Nui, the moai aren’t just statues, but represent a prominent ancestor whose spiritual power they carry, “functioning as a living connection between the living community and their predecessors”.
      </p>

@@ -7,7 +7,7 @@
     "description": "The key that unlocked ancient Egyptian hieroglyphs.",
     "room": "Room 4",
     "british": false,
-    "contested": true,
+    "contested": false,
     "image": "./assets/images/Rosetta-Stone-in-situ.webp"
   },
   {
@@ -62,7 +62,7 @@
     "description": "Brass head of an Ooni, sacred king of the Kingdom of Ife.",
     "room": "Room 25",
     "british": false,
-    "contested": true,
+    "contested": false,
     "image": "./assets/images/Brass-Ife-head-769x1024.png"
   },
   {

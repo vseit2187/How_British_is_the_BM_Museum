@@ -101,11 +101,11 @@ export async function initForce() {
     }
   });
 
-  // SVG
+  // SVG — full square viewBox so the sticky-centred clusters aren't clipped
   const svg = d3.select('#force-svg')
-    .attr('viewBox', `0 159 ${W} ${H - 318}`)
+    .attr('viewBox', `0 0 ${W} ${H}`)
     .attr('width', '100%');
-  wrap.style.height = (H - 318) + 'px';
+  wrap.style.height = H + 'px';
 
   const g = svg.append('g');
 
@@ -188,58 +188,46 @@ export async function initForce() {
     .alpha(0.08) // low alpha — almost settled already
     .on('tick', () => dots.attr('cx', d => d.x).attr('cy', d => d.y));
 
-  // Toggle
+  // ── State machine ──
   let filterOn = false;
 
   // UK cluster target: right side of canvas (~68% of width)
   const ukTargetX = W * 0.68;
 
-  document.getElementById('force-toggle').addEventListener('click', () => {
-    filterOn = !filterOn;
-    const btn = document.getElementById('force-toggle');
-    btn.classList.toggle('on', filterOn);
-    document.getElementById('lbl-all').classList.toggle('active', !filterOn);
-    document.getElementById('lbl-uk').classList.toggle('active',  filterOn);
+  // Move/show the UK-only scene (on=true) or restore the full clustered scene (on=false)
+  function setUKOnly(on) {
+    if (on === filterOn) return;
+    filterOn = on;
+    const lblAll = document.getElementById('lbl-all');
+    const lblUk  = document.getElementById('lbl-uk');
+    if (lblAll) lblAll.classList.toggle('active', !on);
+    if (lblUk)  lblUk.classList.toggle('active',  on);
 
-    if (filterOn) {
+    if (on) {
       // Move UK cluster to right; keep non-UK where they are (they'll fade out)
-      nodes.forEach(d => {
-        if (d.isUK) {
-          d.cx = ukTargetX;
-          d.cy = cy;
-        }
-        // non-UK: leave cx/cy unchanged — simulation keeps them in place while they fade
-      });
+      nodes.forEach(d => { if (d.isUK) { d.cx = ukTargetX; d.cy = cy; } });
 
-      // Fade out non-UK dots first, then move UK
       dots.filter(d => !d.isUK && d.id !== 'unknown')
         .transition().duration(500).attr('opacity', 0);
       dots.filter(d => d.id === 'unknown')
         .transition().duration(400).attr('opacity', 0);
 
-      // Restart sim to slide UK to right; non-UK hidden so movement doesn't matter
       sim.force('x', d3.forceX(d => d.cx).strength(d => d.isUK ? 0.12 : 0.001))
          .force('y', d3.forceY(d => d.cy).strength(d => d.isUK ? 0.12 : 0.001))
          .force('collide', d3.forceCollide(d => d.r + 0.4).strength(0.6))
          .alpha(0.7).restart();
 
-      // Show UK dots brighter after fade completes
       dots.filter(d => d.isUK)
         .transition().duration(600).delay(200)
-        .attr('opacity', 0.92)
-        .attr('r', 3.1);
+        .attr('opacity', 0.92).attr('r', 3.1);
 
-      // Stat panel slides in from left after UK has moved
       d3.select('#fstat').transition().duration(600).delay(500).attr('opacity', 1);
 
     } else {
-      // Restore all nodes to original cluster centres
       nodes.forEach(d => { d.cx = centres[d.id].x; d.cy = centres[d.id].y; });
 
-      // Hide stat panel immediately
       d3.select('#fstat').transition().duration(250).attr('opacity', 0);
 
-      // Fade non-UK back in
       dots.filter(d => !d.isUK && d.id !== 'unknown')
         .transition().duration(600).delay(150).attr('opacity', 0.78);
       dots.filter(d => d.id === 'unknown')
@@ -247,13 +235,51 @@ export async function initForce() {
       dots.filter(d => d.isUK)
         .transition().duration(400).attr('opacity', 0.78).attr('r', 2.9);
 
-      // Restart sim to return UK to centre
       sim.force('x', d3.forceX(d => d.cx).strength(d => d.id === 'unknown' ? 0.007 : 0.09))
          .force('y', d3.forceY(d => d.cy).strength(d => d.id === 'unknown' ? 0.007 : 0.09))
          .force('collide', d3.forceCollide(d => d.r + 0.55).strength(0.65))
          .alpha(0.7).restart();
     }
+  }
+
+  // Dim every coloured cluster and spotlight the faint "unknown origin" cluster
+  function emphasizeUnknown(on) {
+    if (filterOn) return; // only meaningful in the full-cluster scenes
+    dots.filter(d => d.id !== 'unknown')
+      .transition().duration(500).attr('opacity', on ? 0.12 : 0.78);
+    dots.filter(d => d.id === 'unknown')
+      .transition().duration(500).attr('opacity', 1)
+      .attr('stroke', on ? 'rgba(26,22,20,0.6)' : 'rgba(26,22,20,0.3)')
+      .attr('stroke-width', on ? 0.9 : 0.6);
+  }
+
+  // Scroll-driven scenes: 0 = all, 1 = spotlight unknown, 2 = British only
+  function setState(n) {
+    if (n === 0)      { setUKOnly(false); emphasizeUnknown(false); }
+    else if (n === 1) { setUKOnly(false); emphasizeUnknown(true);  }
+    else if (n === 2) { emphasizeUnknown(false); setUKOnly(true);  }
+  }
+
+  // Optional manual toggle (if a toggle button is present)
+  const toggleBtn = document.getElementById('force-toggle');
+  if (toggleBtn) toggleBtn.addEventListener('click', () => {
+    toggleBtn.classList.toggle('on', !filterOn);
+    setUKOnly(!filterOn);
   });
+
+  // ── Scrollytelling step observer ──
+  const steps = document.querySelectorAll('#overview .step');
+  if (steps.length) {
+    const stepObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        steps.forEach(s => s.classList.remove('is-active'));
+        e.target.classList.add('is-active');
+        setState(+e.target.dataset.step);
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    steps.forEach(s => stepObs.observe(s));
+  }
 
   // Legend
   const leg = document.getElementById('dot-legend');
