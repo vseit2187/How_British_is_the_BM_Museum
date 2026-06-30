@@ -4,10 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help - Site Navigation</title>
-  <!-- Link to your existing stylesheet to keep fonts and colors consistent -->
   <link rel="stylesheet" href="./css/style.css">
   
   <style>
+    body {
+      background: rgba(245, 240, 232, 1); /* Matches your main site background */
+    }
+
+    /* Navigation Back Button */
+    .back-nav {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+    }
+    
+    .back-nav a {
+      text-decoration: none;
+      color: var(--stone, #8B8278);
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-nav a:hover {
+      color: var(--ink, #1a1614);
+    }
+
+    /* Grid Layout */
     .help-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -16,7 +39,7 @@
       min-height: 100vh;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 40px;
+      padding: 80px 40px 40px;
     }
 
     .help-text h1 {
@@ -27,11 +50,11 @@
 
     .help-text span {
       font-size: 1.2em;
-      color: #A09585; /* Using a generic stone/gold hex since I don't have your exact CSS variables */
+      color: var(--stone, #8B8278);
       font-style: italic;
     }
 
-    /* Keeps the video constrained to the vertical 9:16 aspect ratio of a YT Short */
+    /* Vertical video wrapper */
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -52,26 +75,33 @@
       border: none;
     }
 
-    /* Stack to one column on mobile screens */
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       .help-container {
         grid-template-columns: 1fr;
         text-align: center;
-        align-content: center;
+      }
+      .back-nav {
+        top: 20px;
+        left: 20px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Left Back Link -->
+  <div class="back-nav">
+    <a href="index.html">← Back to the project</a>
+  </div>
+
+  <!-- Main Content Grid -->
   <div class="help-container">
-    <!-- Column 1: Text -->
     <div class="help-text">
       <h1>Having trouble navigating the site?</h1>
       <span>Watch this walkthrough video &gt;</span>
     </div>
 
-    <!-- Column 2: Embedded Video -->
     <div class="video-wrapper">
       <iframe 
         src="https://www.youtube.com/embed/iMK645Aawq4" 
