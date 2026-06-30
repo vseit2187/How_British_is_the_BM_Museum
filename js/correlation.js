@@ -57,7 +57,7 @@ export async function initCorrelation() {
 
   // ── 4. Layout ────────────────────────────────────────────────────────────────
   const W      = wrap.clientWidth || 820;
-  const H      = Math.max(520, Math.round(W * 0.68));
+  const H      = Math.max(390, Math.round(W * 0.50));
   const margin = { top: 16, right: 160, bottom: 16, left: 160 };
 
   const sankeyGen = d3Sankey()

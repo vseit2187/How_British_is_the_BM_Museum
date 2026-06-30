@@ -53,6 +53,10 @@ h1 em, h2 em {
   color: var(--gold);
 }
 
+/* Muted, less-saturated link colour (softer than default browser blue) */
+a { color: #5C7689; }
+a:hover { color: var(--ink); }
+
 .eyebrow {
   display: block;
   font-family: 'Courier New', monospace;
@@ -399,18 +403,28 @@ nav {
   gap: 12px;
   justify-content: center;
   margin-bottom: 12px;
+  transform: translateY(-0.4cm);
 }
 
 .step {
-  min-height: 95vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
 }
 
-.step:first-child { min-height: 80vh; }
-.step:last-child  { min-height: 80vh; }
+/* Trailing room so the final step can scroll up to centre like the others */
+.scrolly-steps { padding-bottom: 25vh; }
+
+/* Nudge the final card down slightly */
+.scrolly-steps .step:last-child .step-card { position: relative; top: 1cm; }
 
 .step-card {
+  width: 100%;
+  max-width: 400px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: rgba(245, 240, 232, 0.92);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--gold);
@@ -626,8 +640,10 @@ nav {
   aspect-ratio: 3/4;
   overflow: hidden;
   background: var(--bg-alt);
-  cursor: pointer;
 }
+
+/* Only the linked (contested) cards signal clickability */
+a.highlight-card { cursor: pointer; }
 
 .highlight-card img {
   width: 100%;

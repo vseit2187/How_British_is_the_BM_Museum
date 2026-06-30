@@ -101,11 +101,19 @@ export async function initForce() {
     }
   });
 
-  // SVG — full square viewBox so the sticky-centred clusters aren't clipped
+  // SVG — pad the viewBox vertically so the clusters aren't clipped top/bottom,
+  // and set an explicit height so Chrome doesn't collapse it to the default 150px
+  // inside the sticky/flex container.
+  const PAD = Math.round(H * 0.12);
+  const vbH = H + PAD * 2;
   const svg = d3.select('#force-svg')
-    .attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('width', '100%');
-  wrap.style.height = H + 'px';
+    .attr('viewBox', `0 ${-PAD} ${W} ${vbH}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .attr('width', '100%')
+    .attr('height', vbH)
+    .style('width', '100%')
+    .style('height', vbH + 'px');
+  wrap.style.height = vbH + 'px';
 
   const g = svg.append('g');
 
